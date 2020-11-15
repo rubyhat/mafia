@@ -1,0 +1,16 @@
+.event-form
+  = simple_form_for @event, html: {class: "event-form__form"} do |e|
+    = e.error_notification
+    .event-form__group.user-form__group
+      = e.input :name,
+              input_html: { class: 'event-form__input user-form__input' },
+              placeholder: 'На Ержанова',
+              label: 'Место сбора',
+              label_html: { class: 'event-form__label user-form__label' }
+    .event-form__group.user-form__group
+      = e.input :date,
+              input_html: { class: 'event-form__input user-form__input'},
+              placeholder: '12 ноября',
+              label: 'Дата сбора',
+              label_html: { class: 'event-form__label user-form__label' }
+    = e.button :submit,'Создать сбор', class: 'event-form__btn user-form__submit-btn'

@@ -1,0 +1,12 @@
+div.main-header
+  div.logo-wrap
+    = link_to "Evento", root_path, class: 'logo'
+  div.main-header__links-wrap
+    = link_to 'Главная', root_path, class: 'fz-sm main-header__link'
+    - if user_signed_in?
+      = link_to current_user.username.camelize, edit_user_registration_path, class: 'fz-sm main-header__link'
+      / = link_to current_user.username, edit_user_registration_path, class: 'main-header__link'
+      = link_to "Выйти", destroy_user_session_path, method: :delete, class: 'header-dropdown__link fz-sm'
+    - else
+      = link_to "Войти", new_user_session_path, class: 'main-header__link fz-sm'
+      = link_to "Регистрация", new_user_registration_path, class: 'main-header__link-btn fz-sm'

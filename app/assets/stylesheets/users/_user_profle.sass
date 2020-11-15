@@ -1,0 +1,16 @@
+@import "layout/vars"
+.user-info
+  display: flex
+  align-items: center
+  &__group
+    display: flex
+    align-items: center
+    margin-right: 1rem
+    h4
+      margin-right: .25rem
+    span, .user-info__events-count
+      color: $main-accent
+    &:last-child
+      margin-right: 0
+  & .create-form
+    margin-left: auto

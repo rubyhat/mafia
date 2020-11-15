@@ -1,0 +1,98 @@
+// Events index page
+@import "layout/vars"
+.event-games
+  padding: 2rem 0
+  &__item
+    background-color: $white
+    border: 1px solid $main-border
+    border-radius: 4px
+    padding: 1rem
+    padding-top: 0
+    margin-bottom: 1rem
+    &:last-child
+      margin-bottom: 0
+  &__show-users
+    display: flex
+    align-items: center
+    cursor: pointer
+  &__icon
+    background-color: $main-accent
+    border-radius: 4px
+    display: flex
+    max-width: max-content
+    cursor: pointer
+    margin-left: .5rem
+    &_user
+      padding: 6px
+    &_arrow
+      padding: 9px 6px
+  &__users
+    display: flex
+    flex-direction: column
+  &__row
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 1rem 0
+    border-bottom: 2px solid $main-border
+    &:last-child
+      border: none
+      padding-bottom: 0
+    &-content
+      display: flex
+      align-items: center
+  &__user-info_current-user
+    border-bottom: 2px solid $main-green
+    color: $main-green
+    & .event-games__num,.event-games__username
+      color: $main-green
+    & .event-games__icon
+      background-color: $main-green
+  &__num
+    color: $main-accent
+    margin-right: 2rem
+  &__separator
+    width: 2px
+    height: 27px
+    background-color: $main-border
+    margin: 0 1rem
+  &__event-date
+    color: $main-title
+  &__event-user-count
+    color: $main-accent
+  &__current-count
+    margin-left: .25rem
+  &__event-status
+    color: $main-green
+    padding: .125rem .25rem
+    border-radius: 4px
+    background-color: $light-green
+  &__btn-accept
+    background-color: $main-green
+    border-radius: 4px
+    color: $white
+    font-weight: 700
+    font-size: 18px
+    line-height: 27px
+    display: flex
+    align-items: center
+    width: max-content
+    padding: .25rem .75rem
+    margin: 0 auto
+    cursor: pointer
+    border: none
+    transition: all 300ms
+    &:hover
+      box-shadow: $main-shadow
+    &_true
+      background-color: $light-green
+      color: $main-green
+      cursor: default
+  &__btn-accept-icon
+    margin-right: .5rem
+  &__row_accept-btn
+    display: flex
+    justify-content: center
+
+
+

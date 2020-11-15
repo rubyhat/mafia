@@ -1,0 +1,62 @@
+.registration
+  .page-title
+    h3.page-title__title Регистрация
+    h5.page-title__subtitle Пользователя
+
+  = simple_form_for user_path(@user), method: :put do |f|
+    .user-form
+      / = f.error_notification
+      - if flash[:notice]
+        p = flash[:notice]
+      - if flash[:alert]
+        p = flash[:alert]
+
+      .user-form__group
+        = f.input :name,
+                label: 'Имя',
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "name", class: 'user-form__input fz-mt', placeholder: 'Иван' },
+                label_html: { class: 'user-form__label' }
+
+        = f.input :username,
+                label: 'Никнейм',
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "username", class: 'user-form__input fz-mt', placeholder: 'mafiozzi'},
+                label_html: { class: 'user-form__label' }
+
+      .user-form__group
+        = f.input :password,
+                label: 'Пароль',
+                required: true,
+                input_html: { autocomplete: "new-password", class: 'user-form__input fz-mt', placeholder: 'Не менее 8 символов' },
+                label_html: { class: 'user-form__label' }
+        = f.input :password_confirmation,
+                label: 'Подтверждение пароля',
+                required: true,
+                input_html: { autocomplete: "new-password", class: 'user-form__input fz-mt', placeholder: 'Не менее 8 символов' },
+                label_html: { class: 'user-form__label' }
+      .user-form__group
+        = f.input :current_password,
+                label: 'Текущий пароль',
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email", class: 'user-form__input fz-mt', placeholder: 'Текущий пароль' },
+                label_html: { class: 'user-form__label' }
+        = f.button :submit, "Продолжить", class: 'user-form__submit-btn'
+
+          / p.fz-sm Минимальная длина #{@minimum_password_length}*
+
+  .custom-hr
+  - if flash[:notice]
+    p.success-note.fz-sm = flash[:notice]
+  - if flash[:alert]
+    p.alert-note.fz-sm = flash[:alert]
+    .custom-hr
+  h5 Уже есть аккаунт?
+  / p.page-title__subtitle = render "devise/shared/links"
+
+  .devise-form__img
+    = image_tag("devise/registration_img.svg", alt: "Welcome img")
+

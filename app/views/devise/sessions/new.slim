@@ -1,0 +1,35 @@
+.login-page
+  .page-title
+    h3.page-title__title Авторизация
+    h5.page-title__subtitle Пользователя
+
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .user-form
+    /= f.error_notification
+    .user-form__group
+      = f.input :email,
+                  required: false,
+                  autofocus: true,
+                  input_html: { autocomplete: "email", class: 'user-form__input fz-mt', placeholder: 'Почта' },
+                  label_html: { class: 'user-form__label' }
+      = f.input :password,
+                  required: false,
+                  input_html: { autocomplete: "password", class: 'user-form__input fz-mt', placeholder: 'Пароль' },
+                  label_html: { class: 'user-form__label' }
+
+      = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+
+
+      = f.button :submit, "Войти", class: 'user-form__submit-btn'
+
+
+  .custom-hr
+  - if flash[:notice]
+    p.success-note.fz-sm = flash[:notice]
+  - if flash[:alert]
+    p.alert-note.fz-sm = flash[:alert]
+    .custom-hr
+  .devise-links
+    h5 Еще нет аккаунта?
+    div.page-title__subtitle = render "devise/shared/links"
+

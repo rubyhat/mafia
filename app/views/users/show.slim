@@ -1,0 +1,17 @@
+doctype html
+html
+  body
+    .user-profile
+      .page-title
+        h3.page-title__title = @user.username.camelize
+        h5.page-title__subtitle Профиль
+      .user-info
+        .user-info__group
+          h4 Имя:
+          span.user-info__name = @user.name
+        .user-info__group
+          h4 Никнейм:
+          span.user-info__username = @user.username
+        .user-info__group
+          h4 Сыграно игр:
+          h4.user-info__events-count = @user.events.count

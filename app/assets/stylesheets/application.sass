@@ -1,0 +1,127 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require layout/layout
+ *= require layout/header
+ *= require layout/footer
+ */
+
+@import "layout/vars"
+.wrapper
+  display: flex
+  flex-direction: column
+  flex-grow: 1
+
+.content
+  flex: 1 1 auto
+
+.container
+  width: 100%
+  max-width: 1024px
+  padding: 0 32px
+  margin: 0 auto
+
+.event_index
+  height: 100%
+
+.logo
+  position: relative
+  color: $main-title
+  font-weight: bold
+  &:after
+    content: 'Beta'
+    color: $main-accent
+    font-weight: 400
+    position: absolute
+    right: -26px
+    top: -4px
+    font-size: $fz-es
+    line-height: $lh-es
+
+.page-title
+  display: flex
+  flex-direction: column
+  padding: 2rem 0
+  &__subtitle
+    color: $main-accent
+
+
+.devise-links
+  display: flex
+  flex-direction: column
+  a
+    color: $main-accent
+    transition: all 300ms
+    &:hover
+      text-decoration: underline
+
+.alert-note, .error
+  color: $main-accent
+.success-note
+  color: $main-green
+
+.filter-bar
+  display: flex
+  align-items: center
+  justify-content: space-between
+  &__filters
+    display: flex
+    align-items: center
+  &__icon
+    margin-right: 2rem
+  &__btn
+    margin-right: 1rem
+  &__btn
+    padding: 4px 16px
+    border-radius: 4px
+    color: $main-text
+    background-color: $light-blue-bg
+    transition: all 300ms
+    cursor: pointer
+    &:hover
+      box-shadow: $main-shadow
+  &__btn_active
+    background-color: $main-accent
+    color: $white
+
+.create-form
+  padding-right: 1rem
+  &__btn
+    display: flex
+    align-items: center
+    color: $main-title
+    cursor: pointer
+  &__icon
+    background-color: $main-accent
+    color: $white
+    border-radius: 4px
+    margin-left: 1rem
+    padding: 1px 7px 2px 8px
+    transition: all 300ms
+    &:hover
+      box-shadow: $main-shadow
+.alert
+  padding: .5rem
+  border-radius: 4px
+  margin-top: .5rem
+  font-weight: 700
+  font-size: 14px
+  line-height: 22px
+  width: max-content
+  &__success
+    background-color: $light-green
+    color: $main-green
+  &__error
+    background-color: rgba(253, 111, 92, 0.25)
+    color: $main-accent
