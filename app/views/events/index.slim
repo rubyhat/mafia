@@ -18,8 +18,13 @@ html
               | Создать сбор
               .create-form__icon
                 | +
-        - if user_signed_in?
-          = render 'events/form'
+        .event-games__form
+          - if user_signed_in?
+            = render 'events/form'
+          - else
+            div.alert.alert__error
+              | Для создания сбора необходимо
+              = link_to 'Авторизоваться', new_user_session_path, class: 'alert__link alert__link_dark'
       - if flash[:notice]
         div.alert.alert__success = notice
       - if flash[:alert]
@@ -71,3 +76,7 @@ html
                         | Принять участие
         - else
           p Игр пока нет...
+        .event-games__pagination
+          = link_to '<- сюда', events_path(page: @page - 1)
+
+          = link_to 'туда ->', events_path(page: @page + 1)

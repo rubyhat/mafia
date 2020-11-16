@@ -3,9 +3,15 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show update destroy edit]
   before_action :authenticate_user!, except: %i[index show]
 
+  EVENT_PER_PAGE = 10
+
   # GET /events
   def index
-    @events = Event.all.order('created_at DESC')
+    # offset задает страницу, limit задает количество айтемов на странице
+    # если всего айтемов 9, а limit(3), то offset(0/1/2) будет максимум 3 страницы
+    # так как 3 3 3
+    @page = params.fetch(:page, 0).to_i
+    @events = Event.all.order('created_at DESC').offset(@page * EVENT_PER_PAGE).limit(EVENT_PER_PAGE)
     @event = Event.new
   end
 

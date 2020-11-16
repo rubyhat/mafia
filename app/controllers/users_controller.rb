@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) rescue not_found
   end
 
   # После неудачной регистрации открывается страница /users, если ее обновить,
