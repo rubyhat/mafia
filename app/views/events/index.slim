@@ -5,7 +5,7 @@ html
       .page-title
         h3.page-title__title Мафия сегодня
         h5.page-title__subtitle = l Date.today, format: "%A"
-        = javascript_pack_tag 'hello_react'
+        / = javascript_pack_tag 'hello_react'
 
       .filter-wrap
         .filter-bar.fz-sm
@@ -52,15 +52,15 @@ html
                     = image_tag('icons/i-arrow-outline.svg', alt: 'icon', class: 'icon icon__event-games-arrow')
               .event-games__users
                 - event.event_games.each do |eg|
-                    div.event-games__row.event-games__user-info class=('event-games__user-info_current-user' if user_signed_in? && eg.user.id == current_user.id)
-                      .event-games__row-content
-                        h4.event-games__num.event-games__user-num #1
-                        h4.event-games__username.event-games__username_current-user Г-н #{eg.user.username}
-                        div.event-games__separator
-                        p.event-games__name.event-games__user-name.fz-mt #{eg.user.name}
-                        div.event-games__separator
-                      = link_to user_path(eg.user.id), class: 'event-games__icon event-games__icon_user' do
-                        = image_tag('icons/i-user.svg', alt: 'icon')
+                  div.event-games__row.event-games__user-info class=('event-games__user-info_current-user' if user_signed_in? && eg.user.id == current_user.id)
+                    .event-games__row-content
+                      h4.event-games__num.event-games__user-num #1
+                      h4.event-games__username.event-games__username_current-user Г-н #{eg.user.username}
+                      div.event-games__separator
+                      p.event-games__name.event-games__user-name.fz-mt #{eg.user.name}
+                      div.event-games__separator
+                    = link_to user_path(eg.user.id), class: 'event-games__icon event-games__icon_user' do
+                      = image_tag('icons/i-user.svg', alt: 'icon')
                 .event-games__row.event-games__row_accept-btn
                   - if user_signed_in?
                     - if event.users.ids.include?(current_user.id)

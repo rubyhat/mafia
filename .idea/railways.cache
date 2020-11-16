@@ -18,10 +18,7 @@ Ruby enVironment Manager 1.29.9 (latest) (c) 2009-2017 Michal Papis, Piotr Kuczy
                                       DELETE /users(.:format)                                                                         registrations#destroy
                                       POST   /users(.:format)                                                                         registrations#create
                                 users GET    /users(.:format)                                                                         users#users_sign_up
-                            edit_user GET    /users/:id/edit(.:format)                                                                users#edit
                                  user GET    /users/:id(.:format)                                                                     users#show
-                                      PATCH  /users/:id(.:format)                                                                     users#update
-                                      PUT    /users/:id(.:format)                                                                     users#update
                                events GET    /events(.:format)                                                                        events#index
                                       POST   /events(.:format)                                                                        events#create
                             new_event GET    /events/new(.:format)                                                                    events#new

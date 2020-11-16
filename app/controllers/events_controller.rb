@@ -45,7 +45,10 @@ class EventsController < ApplicationController
   end
 
   # GET /events/:id
-  def show; end
+  def show
+    @event
+    render_404 unless @event
+  end
 
   # GET /events/1/edit
   def edit; end
@@ -69,7 +72,7 @@ class EventsController < ApplicationController
   end
 
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:id]) rescue not_found
   end
 
 end

@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title Evento - Страница не найдена :(
+    meta name="viewport" content="width=device-width,initial-scale=1"
+  body
+    .page-not-found
+      .page-title
+        h3.page-title__title Страница не найдена
+        h5.page-title__subtitle Ошибка 404
+      .page-not-found__body
+        = image_tag('i-404-error.svg', alt: 'error', class: 'page-not-found__img')
+        p.page-not-found__text
+          | Возможно Вы допустили ошибку в URL-адресе или страница была удалена
+        a.page-not-found__link href="/" Вернуться на главную
+
