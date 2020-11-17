@@ -32,7 +32,7 @@ html
       .event-games
         - if @events.count > 0
           - @events.each do |event|
-            .event-games__item.event-games__item_hide
+            .event-games__item.event-games__item_hide data-age=('new' if (l Date.today, format: "%d").to_i == event.created_at.day.to_i)
               .event-games__row.event-games__item-header
                 .event-games__row-content
                   h4.event-games__num.event-games__num_event # #{event.id}
