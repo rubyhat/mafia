@@ -3,7 +3,7 @@ class EventGamesController < ApplicationController
     @event_game = current_user.event_games.build(event_games_params)
     if @event_game.save
       respond_to do |format|
-        format.html { redirect_to root_path, notice: 'Event game success' }
+        format.html { redirect_to root_path, notice: 'Вы успешно записались на игру!' }
         format.json { render root_path, status: :created, location: @event_game }
       end
       # flash[:notice] = 'Success'

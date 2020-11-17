@@ -32,7 +32,7 @@ html
       .event-games
         - if @events.count > 0
           - @events.each do |event|
-            .event-games__item
+            .event-games__item.event-games__item_hide
               .event-games__row.event-games__item-header
                 .event-games__row-content
                   h4.event-games__num.event-games__num_event # #{event.id}
@@ -48,12 +48,11 @@ html
                   - if (l Date.today, format: "%d").to_i == event.created_at.day.to_i
                     p.event-games__event-status Новая
                 .event-games__show-users
-                  / | Посмотреть игроков
                   - if user_signed_in? && event.user_id == current_user.id
                     = link_to event, data: { confirm: "Вы уверены?" }, method: :delete do
                       .event-games__icon.event-games__icon_user
                         = image_tag('icons/i-delete.svg', alt: 'delete')
-                  .event-games__icon.event-games__icon_arrow
+                  .event-games__icon.event-games__icon_arrow.event-games__icon_drop
                     = image_tag('icons/i-arrow-outline.svg', alt: 'icon', class: 'icon icon__event-games-arrow')
               .event-games__users
                 - event.event_games.each do |eg|
@@ -74,9 +73,15 @@ html
                       = button_to({ controller: :event_games, action: :create, user_id: current_user.id, event_id: event.id }, {class: 'event-games__btn-accept'}) do
                         = image_tag('icons/i-accept.svg', alt: 'icon', class: 'event-games__btn-accept-icon')
                         | Принять участие
+                  - else
+                    div.alert.alert__error
+                      | Чтобы принять участие, необходимо
+                      = link_to 'Авторизоваться', new_user_session_path, class: 'alert__link alert__link_dark'
         - else
           p Игр пока нет...
         .event-games__pagination
-          = link_to '<- сюда', events_path(page: @page - 1)
-
-          = link_to 'туда ->', events_path(page: @page + 1)
+          - if @page > 0
+            = link_to '<- сюда', events_path(page: @page - 1), class: 'event-games__pagination-link'
+          - else
+            span.event-games__pagination-link.event-games__pagination-link_disabled <- сюда
+          = link_to 'туда ->', events_path(page: @page + 1), class: 'event-games__pagination-link'

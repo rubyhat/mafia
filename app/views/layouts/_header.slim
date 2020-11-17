@@ -4,7 +4,8 @@ div.main-header
   div.main-header__links-wrap
     = link_to 'Главная', root_path, class: 'fz-sm main-header__link'
     - if user_signed_in?
-      = link_to current_user.username.camelize, edit_user_registration_path, class: 'fz-sm main-header__link'
+      = link_to current_user.username.camelize, user_path(current_user.id), class: 'fz-sm main-header__link'
+      / = link_to current_user.username.camelize, edit_user_registration_path, class: 'fz-sm main-header__link'
       / = link_to current_user.username, edit_user_registration_path, class: 'main-header__link'
       = link_to "Выйти", destroy_user_session_path, method: :delete, class: 'header-dropdown__link fz-sm'
     - else

@@ -5,13 +5,77 @@ html
       .page-title
         h3.page-title__title = @user.username.camelize
         h5.page-title__subtitle Профиль
-      .user-info
-        .user-info__group
-          h4 Имя:
-          span.user-info__name = @user.name
-        .user-info__group
-          h4 Никнейм:
-          span.user-info__username = @user.username
-        .user-info__group
-          h4 Сыграно игр:
-          h4.user-info__events-count = @user.events.count
+      .user-stat
+        .user-info
+          .user-info__group
+            h4 Имя:
+            span.user-info__name = @user.name
+          .user-info__group
+            h4 Никнейм:
+            span.user-info__username = @user.username
+          .user-info__group
+            h4 Сыграно игр:
+            h4.user-info__events-count = @user.events.count
+        .create-form
+          .create-form__btn.fz-sm
+            - if user_signed_in? && @user.id == current_user.id
+              = link_to 'Редактировать профиль', edit_user_registration_path
+            .create-form__icon
+              | #
+      .event-games
+        - if @user.events.count > 0
+          - @user.events.order('created_at DESC').each do |event|
+            .event-games__item.event-games__item_hide
+              .event-games__row.event-games__item-header
+                .event-games__row-content
+                  h4.event-games__num.event-games__num_event # #{event.id}
+                  h4.event-games__name_event #{event.name}
+                  div.event-games__separator
+                  p.event-games__event-date #{event.date}
+                  div.event-games__separator
+                  h5.event-games__event-user-count
+                    | Игроки:
+                    span.event-games__current-count #{event.event_games.count}
+                    | /10
+                  div.event-games__separator
+                  - if (l Date.today, format: "%d").to_i == event.created_at.day.to_i
+                    p.event-games__event-status Новая
+                .event-games__show-users
+                  / | Посмотреть игроков
+                  - if user_signed_in? && event.user_id == current_user.id
+                    = link_to event, data: { confirm: "Вы уверены?" }, method: :delete do
+                      .event-games__icon.event-games__icon_user
+                        = image_tag('icons/i-delete.svg', alt: 'delete')
+                  .event-games__icon.event-games__icon_arrow.event-games__icon_drop
+                    = image_tag('icons/i-arrow-outline.svg', alt: 'icon', class: 'icon icon__event-games-arrow')
+              .event-games__users
+                - event.event_games.each do |eg|
+                  div.event-games__row.event-games__user-info class=('event-games__user-info_current-user' if user_signed_in? && eg.user.id == current_user.id)
+                    .event-games__row-content
+                      h4.event-games__num.event-games__user-num #1
+                      h4.event-games__username.event-games__username_current-user Г-н #{eg.user.username}
+                      div.event-games__separator
+                      p.event-games__name.event-games__user-name.fz-mt #{eg.user.name}
+                      div.event-games__separator
+                    = link_to user_path(eg.user.id), class: 'event-games__icon event-games__icon_user' do
+                      = image_tag('icons/i-user.svg', alt: 'icon')
+                .event-games__row.event-games__row_accept-btn
+                  - if user_signed_in?
+                    - if event.users.ids.include?(current_user.id)
+                      .event-games__btn-accept.event-games__btn-accept_true Вы участвуете!
+                    - else
+                      = button_to({ controller: :event_games, action: :create, user_id: current_user.id, event_id: event.id }, { class: 'event-games__btn-accept' }) do
+                        = image_tag('icons/i-accept.svg', alt: 'icon', class: 'event-games__btn-accept-icon')
+                        | Принять участие
+                  - else
+                    div.alert.alert__error
+                      | Чтобы принять участие, необходимо
+                      = link_to 'Авторизоваться', new_user_session_path, class: 'alert__link alert__link_dark'
+        - else
+          p Игр пока нет...
+        .event-games__pagination
+          - if @page > 0
+            = link_to '<- сюда', events_path(page: @page - 1), class: 'event-games__pagination-link'
+          - else
+            span.event-games__pagination-link.event-games__pagination-link_disabled <- сюда
+          = link_to 'туда ->', events_path(page: @page + 1), class: 'event-games__pagination-link'

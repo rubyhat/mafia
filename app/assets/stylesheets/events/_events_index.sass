@@ -97,7 +97,7 @@
     display: flex
     align-items: center
     justify-content: center
-    a
+    &-link
       color: $main-text
       font-weight: 700
       font-size: 16px
@@ -109,7 +109,18 @@
       &:hover
         color: $main-title
         text-decoration: underline
+    &-link_disabled
+      color: $main-border
+      cursor: default
+      &:hover
+        color: $main-border
+        text-decoration: none
 
-
+  &__item_hide
+    padding-bottom: 0
+    & .event-games__row
+      border-bottom: none
+    & .event-games__users
+      display: none
 
 
