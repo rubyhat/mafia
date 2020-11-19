@@ -23,8 +23,8 @@ html
             .create-form__icon
               | #
       .event-games
-        - if @user.events.count > 0
-          - @user.events.order('created_at DESC').each do |event|
+        - if @user_events.count > 0
+          - @user_events.order('created_at DESC').each do |event|
             .event-games__item.event-games__item_hide
               .event-games__row.event-games__item-header
                 .event-games__row-content
@@ -75,7 +75,7 @@ html
           p Игр пока нет...
         .event-games__pagination
           - if @page > 0
-            = link_to '<- сюда', events_path(page: @page - 1), class: 'event-games__pagination-link'
+            = link_to '<- сюда', user_path(page: @page - 1), class: 'event-games__pagination-link'
           - else
             span.event-games__pagination-link.event-games__pagination-link_disabled <- сюда
-          = link_to 'туда ->', events_path(page: @page + 1), class: 'event-games__pagination-link'
+          = link_to 'туда ->', user_path(page: @page + 1), class: 'event-games__pagination-link'

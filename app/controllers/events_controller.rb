@@ -5,9 +5,8 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all.order('created_at DESC')
     @event = Event.new
-    event_pagination(@events)
+    @events = event_pagination(Event.all.order('created_at DESC'))
   end
 
   # POST /events

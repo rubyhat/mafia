@@ -47,4 +47,31 @@ function ready() {
             }
         }
     }
+
+    eventIndexFilterGames();
+    function eventIndexFilterGames() {
+        const gamesWrapper = document.querySelector('.event-games'),
+              allGamesBtn = document.querySelector('[data-filter = all-games]'),
+              newGamesBtn = document.querySelector('[data-filter = new-games]');
+
+        if (gamesWrapper && allGamesBtn && newGamesBtn) {
+            const games = gamesWrapper.querySelectorAll('.event-games__item');
+            newGamesBtn.addEventListener('click', () => {
+                newGamesBtn.classList.add('filter-bar__btn_active');
+                allGamesBtn.classList.remove('filter-bar__btn_active');
+                games.forEach(game => {
+                    if (game.getAttribute('data-age') === "old") {
+                        game.classList.add('d-none')
+                    }
+                });
+            });
+            allGamesBtn.addEventListener('click', () => {
+                allGamesBtn.classList.add('filter-bar__btn_active');
+                newGamesBtn.classList.remove('filter-bar__btn_active');
+                games.forEach(game => {
+                    game.classList.remove('d-none');
+                });
+            });
+        }
+    }
 }

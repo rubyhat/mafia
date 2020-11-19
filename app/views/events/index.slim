@@ -4,15 +4,18 @@ html
     div.event-index
       .page-title
         h3.page-title__title Мафия сегодня
-        h5.page-title__subtitle = l Date.today, format: "%A"
+        h5.page-title__subtitle
+          = l Date.today, format: "%A"
+          |,
+          = l Date.today, format: " %d %B"
         / = javascript_pack_tag 'hello_react'
 
       .filter-wrap
         .filter-bar.fz-sm
           .filter-bar__filters
             = image_tag('icons/i-search.svg', alt: 'Search', class: 'filter-bar__icon')
-            .filter-bar__btn.filter-bar__btn_active Все
-            .filter-bar__btn Новые
+            .filter-bar__btn.filter-bar__btn_active data-filter=('all-games') Все
+            .filter-bar__btn data-filter=('new-games') Новые
           .create-form
             .create-form__btn.fz-sm
               | Создать сбор
@@ -32,7 +35,7 @@ html
       .event-games
         - if @events.count > 0
           - @events.each do |event|
-            .event-games__item.event-games__item_hide data-age=('new' if (l Date.today, format: "%d").to_i == event.created_at.day.to_i)
+            .event-games__item.event-games__item_hide data-age=((l Date.today, format: "%d").to_i == event.created_at.day.to_i ? 'new' : 'old')
               .event-games__row.event-games__item-header
                 .event-games__row-content
                   h4.event-games__num.event-games__num_event # #{event.id}
