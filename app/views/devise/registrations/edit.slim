@@ -12,11 +12,6 @@
     .user-info__group
       h4 Сыграно игр:
       h4.user-info__events-count = @user.events.count
-    .create-form
-      .create-form__btn.fz-sm
-        | Редактировать
-        .create-form__icon
-          | +
 
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
