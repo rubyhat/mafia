@@ -1,5 +1,5 @@
 'use strict';
-document.addEventListener('DOMContentLoaded', ready);
+document.addEventListener('turbolinks:load', ready);
 
 function ready() {
 
