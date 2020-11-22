@@ -18,23 +18,12 @@ function ready() {
         }
     }
 
+    // Events - Index - show|hide users in event
     eventShowUsersInEvent();
     function eventShowUsersInEvent() {
         const eventWrapper = document.querySelector('.event-games');
-        function eventShowUpdateWrapper() {
-            const gameWrapper = eventWrapper.querySelectorAll('.event-games__item');
-            const paginationLinks = eventWrapper.querySelectorAll('.event-games__pagination-link');
-
-            paginationLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    console.log('link click')
-                    const gameWrapper = eventWrapper.querySelectorAll('.event-games__item');
-                });
-            });
-        }
 
         if (eventWrapper) {
-            eventShowUpdateWrapper();
             const dropDownButtons = eventWrapper.querySelectorAll('.event-games__icon_drop');
 
             if (dropDownButtons) {
@@ -48,6 +37,7 @@ function ready() {
         }
     }
 
+    // Events - Index - filter all|new games
     eventIndexFilterGames();
     function eventIndexFilterGames() {
         const gamesWrapper = document.querySelector('.event-games'),
@@ -70,6 +60,25 @@ function ready() {
                 newGamesBtn.classList.remove('filter-bar__btn_active');
                 games.forEach(game => {
                     game.classList.remove('d-none');
+                });
+            });
+        }
+    }
+
+    // Events - user number count
+    eventsUserNumInGame();
+    function eventsUserNumInGame() {
+        const gamesWrapper = document.querySelector('.event-games');
+
+        if (gamesWrapper) {
+            const gameItems = gamesWrapper.querySelectorAll('.event-games__item');
+
+            gameItems.forEach(item => {
+                const userNums = item.querySelectorAll('.event-games__user-num');
+
+                userNums.forEach((num, index) => {
+                    console.log(num.innerHTML)
+                    num.innerHTML = '#' + (index + 1);
                 });
             });
         }
