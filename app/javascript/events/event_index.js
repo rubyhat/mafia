@@ -24,12 +24,15 @@ function ready() {
         const eventWrapper = document.querySelector('.event-games');
 
         if (eventWrapper) {
-            const dropDownButtons = eventWrapper.querySelectorAll('.event-games__icon_drop');
+            const eventHeader = eventWrapper.querySelectorAll('.event-games__item-header');
 
-            if (dropDownButtons) {
-                dropDownButtons.forEach(button => {
-                   button.addEventListener('click', () => {
+            if (eventHeader) {
+                eventHeader.forEach(button => {
+                   button.addEventListener('click', (e) => {
                        const buttonParent = button.closest('.event-games__item');
+                       if (e.target.closest('a')) {
+                           return
+                       }
                        buttonParent.classList.toggle('event-games__item_hide');
                    });
                 });
@@ -77,7 +80,6 @@ function ready() {
                 const userNums = item.querySelectorAll('.event-games__user-num');
 
                 userNums.forEach((num, index) => {
-                    console.log(num.innerHTML)
                     num.innerHTML = '#' + (index + 1);
                 });
             });

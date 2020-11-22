@@ -6,11 +6,13 @@
               input_html: { class: 'event-form__input user-form__input' },
               placeholder: 'На Ержанова',
               label: 'Место сбора',
-              label_html: { class: 'event-form__label user-form__label' }
+              label_html: { class: 'event-form__label user-form__label' },
+              maxlength: '30'
     .event-form__group.user-form__group
       = e.input :date,
               input_html: { class: 'event-form__input user-form__input'},
-              placeholder: '12 ноября',
+              placeholder: 'Воскресенье, 30 декабря, 19:00',
               label: 'Дата сбора',
-              label_html: { class: 'event-form__label user-form__label' }
+              label_html: { class: 'event-form__label user-form__label' },
+              maxlength: '30'
     = e.button :submit,'Создать сбор', class: 'event-form__btn user-form__submit-btn'
