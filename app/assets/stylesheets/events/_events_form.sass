@@ -8,3 +8,17 @@
     align-items: center
 .event-games__form_active
   display: block
+.event-form
+  @media (max-width: 768px)
+    &__form
+      flex-direction: column
+    &__group
+      margin-right: 0
+      margin-bottom: 1.5rem
+      width: 100%
+    &__btn, &__input
+      max-width: 100%
+    &__input
+      padding: 1rem
+    &__btn
+      margin-top: 0

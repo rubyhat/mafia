@@ -61,3 +61,22 @@
   display: flex
   justify-content: center
   padding: 32px 0
+
+@media (max-width: 768px)
+  .user-form
+    flex-direction: column
+    &__group
+      margin-right: 0
+      margin-bottom: 1rem
+    &__input
+      max-width: 100%
+      padding: 1rem
+    &__submit-btn
+      max-width: 100%
+      text-align: center
+      padding: .75rem
+      margin-top: 0
+
+@media (max-width: 600px)
+  .devise-form__img
+    display: none

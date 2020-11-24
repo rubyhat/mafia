@@ -94,6 +94,13 @@
     cursor: pointer
     &:hover
       box-shadow: $main-shadow
+  @media (max-width: 450px)
+    &
+      flex-direction: column
+      align-items: flex-start
+    &__filters
+      margin-bottom: 1rem
+
   &__btn_active
     background-color: $main-accent
     color: $white
